@@ -45,5 +45,17 @@ namespace AEWRPod2.Controllers
             }
             return Ok(user);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, UserProfile userProfile)
+        {
+            if (id != userProfile.Id)
+            {
+                return BadRequest();
+            }
+
+            _userProfileRepository.Update(userProfile);
+            return NoContent();
+        }
     }
 }
