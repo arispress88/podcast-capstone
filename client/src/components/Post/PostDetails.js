@@ -59,7 +59,6 @@ export const PostDetails = () => {
         if (post.userProfileId === aewrUserObject.id) {
         return <>
         <Button color="warning" onClick={() => navigate(`/posts/edit/${post.id}`)}>Edit</Button>
-        {/* TODO: Edit post page */}
         </>
     }}
 

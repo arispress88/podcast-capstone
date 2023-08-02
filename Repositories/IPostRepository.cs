@@ -8,5 +8,6 @@ namespace AEWRPod2.Repositories
         Post GetPostById(int id);
         void Add(Post post);
         void Delete(int id);
+        void Update(Post post);
     }
 }

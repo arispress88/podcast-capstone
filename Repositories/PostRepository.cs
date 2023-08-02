@@ -129,5 +129,32 @@ namespace AEWRPod2.Repositories
                 }
             }
         }
+
+        public void Update(Post post)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+
+                        UPDATE Post
+                        SET Title = @title,
+                            Body = @body,
+                            CreateDateTime = @createDateTime,
+                            UserProfileId = @userProfileId
+                        WHERE Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@title", post.Title);
+                    DbUtils.AddParameter(cmd, "@body", post.Body);
+                    DbUtils.AddParameter(cmd, "@createDateTime", post.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@userProfileId", post.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@id", post.Id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ import CategoryList from "./Category/CategoryList";
 import { PostList } from "./Post/PostList";
 import { PostForm } from "./Post/PostForm";
 import { PostDetails } from "./Post/PostDetails";
+import { PostEdit } from "./Post/PostEdit";
 
 export default function ApplicationViews() {
     return (
@@ -21,6 +22,7 @@ export default function ApplicationViews() {
             <Route path="/posts" element={<PostList />} />
             <Route path="/posts/add" element={<PostForm />} />
             <Route path="/posts/:id" element={<PostDetails />} />
+            <Route path="/posts/edit/:postId" element={<PostEdit />} />
         </Routes>
     );
 }
