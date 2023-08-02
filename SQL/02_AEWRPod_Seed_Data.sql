@@ -25,10 +25,10 @@ insert into [Post] ([Id], [Title], [Body], [CreateDateTime], [UserProfileId]) va
 set identity_insert [Post] off
 
 set identity_insert [Clip] on
-insert into [Clip] ([Id], [ClipUrl], [CreateDateTime], [CategoryId]) values (1, 'https://www.tiktok.com/@aewrpod316/video/7258259865804573995?is_from_webapp=1&sender_device=pc&web_id=7208298379200284203', '2023-07-27', 1);
-insert into [Clip] ([Id], [ClipUrl], [CreateDateTime], [CategoryId]) values (2, 'https://www.tiktok.com/@aewrpod316/video/7257480032027692330?is_from_webapp=1&sender_device=pc&web_id=7208298379200284203', '2023-07-27', 2);
-insert into [Clip] ([Id], [ClipUrl], [CreateDateTime], [CategoryId]) values (3, 'https://www.tiktok.com/@aewrpod316/video/7254921386815278378?is_from_webapp=1&sender_device=pc&web_id=7208298379200284203', '2023-07-27', 1);
-insert into [Clip] ([Id], [ClipUrl], [CreateDateTime], [CategoryId]) values (4, 'https://www.tiktok.com/@aewrpod316/video/7254547206693326123?is_from_webapp=1&sender_device=pc&web_id=7208298379200284203', '2023-07-27', 2);
+insert into [Clip] ([Id], [ClipUrl], [UrlData], [CreateDateTime], [CategoryId]) values (1, 'https://www.tiktok.com/@aewrpod316/video/7258259865804573995', '7258259865804573995', '2023-07-27', 1);
+insert into [Clip] ([Id], [ClipUrl], [UrlData], [CreateDateTime], [CategoryId]) values (2, 'https://www.tiktok.com/@aewrpod316/video/7257480032027692330', '7257480032027692330', '2023-07-27', 2);
+insert into [Clip] ([Id], [ClipUrl], [UrlData], [CreateDateTime], [CategoryId]) values (3, 'https://www.tiktok.com/@aewrpod316/video/7254921386815278378', '7254921386815278378', '2023-07-27', 1);
+insert into [Clip] ([Id], [ClipUrl], [UrlData], [CreateDateTime], [CategoryId]) values (4, 'https://www.tiktok.com/@aewrpod316/video/7254547206693326123', '7254547206693326123', '2023-07-27', 2);
 set identity_insert [Clip] off
 
 set identity_insert [PostComment] on

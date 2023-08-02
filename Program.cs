@@ -16,6 +16,7 @@ namespace AEWRPod2
             builder.Services.AddTransient<IUserRepository, UserRepository>();
             builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
             builder.Services.AddTransient<IPostRepository, PostRepository>();
+            builder.Services.AddTransient<IClipRepository, ClipRepository>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -45,6 +45,7 @@ CREATE TABLE [ClipComment] (
 CREATE TABLE [Clip] (
 	[Id] integer PRIMARY KEY IDENTITY,
 	[ClipUrl] nvarchar(1000) NOT NULL,
+	[UrlData] nvarchar(1000) NOT NULL,
 	[CreateDateTime] datetime NOT NULL,
 	[CategoryId] integer NOT NULL,
 

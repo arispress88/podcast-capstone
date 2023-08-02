@@ -10,6 +10,7 @@ import { PostList } from "./Post/PostList";
 import { PostForm } from "./Post/PostForm";
 import { PostDetails } from "./Post/PostDetails";
 import { PostEdit } from "./Post/PostEdit";
+import { ClipList } from "./Clip/ClipList";
 
 export default function ApplicationViews() {
     return (
@@ -23,6 +24,7 @@ export default function ApplicationViews() {
             <Route path="/posts/add" element={<PostForm />} />
             <Route path="/posts/:id" element={<PostDetails />} />
             <Route path="/posts/edit/:postId" element={<PostEdit />} />
+            <Route path="/clips" element={<ClipList />} />
         </Routes>
     );
 }
