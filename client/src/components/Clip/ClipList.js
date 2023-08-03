@@ -20,7 +20,7 @@ export const ClipList = () => {
     const isAdmin = loggedInUser?.userType?.id === 1;
 
     const create = () => {
-        navigate("/clips/add") //TODO: Add a place for admins to upload clips
+        navigate("/clips/add")
     }
 
     return (

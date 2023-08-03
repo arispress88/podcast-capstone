@@ -1,40 +1,29 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Card, CardBody, CardTitle, CardText, Button, CardFooter } from "reactstrap"
+import { Link, useNavigate } from "react-router-dom";
 import { getAllClips } from "../../Managers/ClipManager";
+import { TikTokEmbed } from "react-social-media-embed";
+import { Button } from "reactstrap";
 
 
 export const Clip = ({ clip }) => {
-    const [clips, setClips] = useState([]);
+  const [clips, setClips] = useState([]);
+  const navigate = useNavigate();
 
-    const iframe_container = {
-        left: 0,
-        width: "100%",
-        height: 500,
-        position: "relative",
-      };
-    
-      const iframe = {
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        position: "absolute",
-        border: 0,
-      };
-    
-      return (
-        <>
-          <div className={iframe_container}>
-            <iframe
-              src={`https://www.tiktok.com/embed/${clip.urlData}`}
-              className={iframe}
-              allowFullScreen
-              allow="encrypted-media;"
-            ></iframe>
-          </div>
-          <h4>Posted on: {new Date(clip.createDateTime).toLocaleDateString("en-US")}</h4>
-          <h5>{clip.category?.name}</h5>
-        </>
-    );
+  
+  return (
+    <><>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <TikTokEmbed url={clip.clipUrl} width={325} />
+      </div>
+      <h4>Posted on: {new Date(clip.createDateTime).toLocaleDateString("en-US")}</h4>
+      <Link to={`/clips/${clip.category?.id}`}><h5>{clip.category?.name}</h5></Link>
+    </><>
+        <Button
+          color="primary"
+          onClick={() => navigate(`/clips/${clip.id}`)}
+        >
+          Details
+        </Button>
+      </></>
+  );
 }; 

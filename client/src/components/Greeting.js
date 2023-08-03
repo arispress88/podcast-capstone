@@ -14,7 +14,7 @@ export default function Greeting () {
             <h1>Welcome to the AEWR Podcast web page!</h1>
             <p>Follow us on social media for more up-to-date info about episode releases!</p>
             <div className="social-media-links">
-                <p><strong>X **FKA Twitter**/IG: @AEWRPod</strong></p>
+                <p><strong>Twitter/IG: @AEWRPod</strong></p>
                 <p><strong>TikTok: @aewr316</strong></p>
                 <p><strong>YouTube: Attitude Era Wrestling Review</strong></p>
             </div>

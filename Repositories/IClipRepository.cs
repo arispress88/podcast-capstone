@@ -6,5 +6,8 @@ namespace AEWRPod2.Repositories
     {
         List<Clip> GetAll();
         Clip GetClipById(int id);
+        void Add(Clip clip);
+        void Delete(int id);
+        Clip GetClipByCategory(int categoryId);
     }
 }

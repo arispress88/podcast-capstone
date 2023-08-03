@@ -74,9 +74,7 @@ export const PostDetails = () => {
                 </CardText>
                 
                 {deleteButtonForUser()}
-                {editPostButtonForUser()}
-                
-                
+                {editPostButtonForUser()}                
             </CardBody>
         </Card>
         </div>

@@ -11,6 +11,9 @@ import { PostForm } from "./Post/PostForm";
 import { PostDetails } from "./Post/PostDetails";
 import { PostEdit } from "./Post/PostEdit";
 import { ClipList } from "./Clip/ClipList";
+import { AddClip } from "./Clip/AddClip";
+import { ClipDetails } from "./Clip/ClipDetails";
+import { WWEClip } from "./Clip/WWEClip";
 
 export default function ApplicationViews() {
     return (
@@ -25,6 +28,9 @@ export default function ApplicationViews() {
             <Route path="/posts/:id" element={<PostDetails />} />
             <Route path="/posts/edit/:postId" element={<PostEdit />} />
             <Route path="/clips" element={<ClipList />} />
+            <Route path="/clips/add" element={<AddClip />} />
+            <Route path="/clips/:id" element={<ClipDetails />} />
+            <Route path="/clips/category/:category.id" element={<WWEClip />} />
         </Routes>
     );
 }
