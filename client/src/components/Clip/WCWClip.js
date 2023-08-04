@@ -4,32 +4,32 @@ import { getAllClips } from "../../Managers/ClipManager";
 import { Clip } from "./Clip";
 import { useNavigate } from "react-router-dom";
 
-export const WWEClip = () => {
+export const WCWClip = () => {
     const [clips, setClips] = useState([]);
     const navigate = useNavigate();
 
-    const getWweClips = () => {
+    const getWcwClips = () => {
         getAllClips().then(allClips => {
-            const filteredClips = allClips.filter(clip => clip.categoryId === 1)
+            const filteredClips = allClips.filter(clip => clip.categoryId === 2)
             setClips(filteredClips)
-        });   
+        });
     }
 
     useEffect(() => {
-            getWweClips()
-        }, []);
+        getWcwClips()
+    }, []);
 
     return (
         
         <div className="clips text-center">
-            <h2>Clips from WWE Episodes</h2>
+            <h2>Clips from WCW Episodes</h2>
             <Container
                 className="bg-light border"
                 fluid
             >
                 <Row>
                    {
-                    clips.filter(clip => clip.categoryId === 1)
+                    clips.filter(clip => clip.categoryId === 2)
                         .map(clip => (
                             <Col lg="3" key={clip.id}>
                                 <Clip clip={clip} />
@@ -39,5 +39,5 @@ export const WWEClip = () => {
                 </Row>
             </Container>
         </div>
-    )
+    ) 
 }

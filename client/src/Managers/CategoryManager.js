@@ -8,5 +8,5 @@ export const getAllCategories = () => {
 };
 
 export const getCategoryById = (id) => {
-    return fetch(`${apiUrl}/api/categoy/${id}`).then((r) => r.json())
+    return fetch(`${apiUrl}/api/category/${id}`).then((r) => r.json())
 };

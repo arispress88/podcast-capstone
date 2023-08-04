@@ -30,4 +30,4 @@ export const deleteClip = (id) => {
 export const getClipByCategory = (categoryId) => {
     return fetch(`${apiUrl}/api/clip/category/${categoryId}`)
     .then((r) => r.json())
-}
+};

@@ -7,7 +7,7 @@ export const Category = ({ category }) => {
         <Card className="m-4" color="warning">
             <CardBody>
                 <p>
-                   <Link to={`/clips/${category.id}`}><strong>{category.name}</strong></Link> 
+                   <Link to={`/clips/category/${category.name}`}><strong>{category.name}</strong></Link> 
                 </p>
             </CardBody>
         </Card>

@@ -62,6 +62,11 @@ export const ClipDetails = () => {
         <div className="clips text-center">
             <div>
             {deleteButtonForAdmin()}
+            <Button
+                color="secondary"
+                size="md"
+                onClick={() => navigate(-1)}
+            >Back</Button>
           </div>
             <Card>
           <div style={{ display: 'flex', justifyContent: 'center' }}>

@@ -14,6 +14,8 @@ import { ClipList } from "./Clip/ClipList";
 import { AddClip } from "./Clip/AddClip";
 import { ClipDetails } from "./Clip/ClipDetails";
 import { WWEClip } from "./Clip/WWEClip";
+import { WCWClip } from "./Clip/WCWClip";
+import { PostCommentList } from "./Comment/PostCommentList";
 
 export default function ApplicationViews() {
     return (
@@ -30,7 +32,9 @@ export default function ApplicationViews() {
             <Route path="/clips" element={<ClipList />} />
             <Route path="/clips/add" element={<AddClip />} />
             <Route path="/clips/:id" element={<ClipDetails />} />
-            <Route path="/clips/category/:category.id" element={<WWEClip />} />
+            <Route path="/clips/category/WWE" element={<WWEClip />} />
+            <Route path="/clips/category/WCW" element={<WCWClip />} />
+            <Route path="/postcomment/getpostcommentsbypostid/:postId" element={<PostCommentList />} /> 
         </Routes>
     );
 }

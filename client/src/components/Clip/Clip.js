@@ -16,7 +16,7 @@ export const Clip = ({ clip }) => {
         <TikTokEmbed url={clip.clipUrl} width={325} />
       </div>
       <h4>Posted on: {new Date(clip.createDateTime).toLocaleDateString("en-US")}</h4>
-      <Link to={`/clips/${clip.category?.id}`}><h5>{clip.category?.name}</h5></Link>
+      <Link to={"/category"}><h5>{clip.category?.name}</h5></Link>
     </><>
         <Button
           color="primary"

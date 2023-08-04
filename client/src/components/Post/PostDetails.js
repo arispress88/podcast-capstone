@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, CardBody, CardTitle, CardText, Button, Alert } from "reactstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deletePost, getPostById } from "../../Managers/PostManager";
+import { getPostCommentsById } from "../../Managers/CommentManager";
 
 export const PostDetails = () => {
     const [post, setPost] = useState();
@@ -10,6 +11,7 @@ export const PostDetails = () => {
     const navigate = useNavigate();
     const localAewrUser = localStorage.getItem("userProfile");
     const aewrUserObject = JSON.parse(localAewrUser)
+    const postComment = getPostCommentsById();
 
     useEffect(() => {
         getPostById(id).then(setPost)
@@ -62,6 +64,11 @@ export const PostDetails = () => {
         </>
     }}
 
+    const viewComments = () => {
+        return <>
+            <Button color="primary" onClick={() => navigate(`/postcomment/getpostcommentsbypostid/${postComment.postId}`)}>View Comments</Button></>
+    }
+
     return (
         <div className="posts text-center">
         <Card>
@@ -74,7 +81,8 @@ export const PostDetails = () => {
                 </CardText>
                 
                 {deleteButtonForUser()}
-                {editPostButtonForUser()}                
+                {editPostButtonForUser()}
+                {viewComments()}                
             </CardBody>
         </Card>
         </div>
