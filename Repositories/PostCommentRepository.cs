@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using AEWRPod2.Models;
 using AEWRPod2.Utils;
+using System.Security.Cryptography;
 
 namespace AEWRPod2.Repositories
 {
@@ -58,6 +59,29 @@ namespace AEWRPod2.Repositories
                     reader.Close();
 
                     return postComments;
+                }
+            }
+        }
+
+        public void Add(PostComment postComment)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+
+                        INSERT INTO PostComment (Body, CreateDateTime, UserProfileId, PostId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@body, @createDateTime, @userProfileId, @postId)";
+
+                    cmd.Parameters.AddWithValue("@body", postComment.Body);
+                    cmd.Parameters.AddWithValue("@createDateTime", postComment.CreateDateTime);
+                    cmd.Parameters.AddWithValue("@userProfileId", postComment.UserProfileId);
+                    cmd.Parameters.AddWithValue("@postId", postComment.PostId);
+
+                    postComment.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }

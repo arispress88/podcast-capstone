@@ -38,13 +38,7 @@ CREATE TABLE [UserProfile] (
 
 
 
-CREATE TABLE [Post] (
-	[Id] integer PRIMARY KEY IDENTITY,
-	[Title] nvarchar(255) NOT NULL,
-	[Body] text NOT NULL,
-	[CreateDateTime] datetime NOT NULL,
-	[UserProfileId] integer NOT NULL,
-)
+
 
 CREATE TABLE [Category] (
 	[Id] integer PRIMARY KEY IDENTITY,
@@ -72,7 +66,13 @@ CREATE TABLE [ClipComment] (
 	CONSTRAINT [FK_ClipComment_Clip] FOREIGN KEY ([ClipId]) REFERENCES [Clip] ([Id]),
 )
 
-
+CREATE TABLE [Post] (
+	[Id] integer PRIMARY KEY IDENTITY,
+	[Title] nvarchar(255) NOT NULL,
+	[Body] text NOT NULL,
+	[CreateDateTime] datetime NOT NULL,
+	[UserProfileId] integer NOT NULL,
+)
 
 
 

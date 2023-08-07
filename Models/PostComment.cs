@@ -11,7 +11,7 @@ namespace AEWRPod2.Models
         public DateTime CreateDateTime { get; set; }
         public int UserProfileId { get; set; }
         public int PostId { get; set; }
-        public UserProfile UserProfile { get; set; }
+        public UserProfile? UserProfile { get; set; }
         public Post? Post { get; set; }
     }
 }

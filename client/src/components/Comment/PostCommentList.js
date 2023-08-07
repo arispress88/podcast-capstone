@@ -6,23 +6,25 @@ import { PostComment } from "./PostComment";
 
 export const PostCommentList = () => {
     const [postComments, setPostComments] = useState([]);
-    const { postId } = useParams();
+    const { id, postId } = useParams();
+    const navigate = useNavigate();
 
-    const getPostComments = (postId) => {
-        getPostCommentsById(postId).then((allPostComments) => setPostComments(allPostComments));
+    const getPostComments = (id, postId) => {
+        getPostCommentsById(id, postId).then((allPostComments) => setPostComments(allPostComments));
     };
 
     useEffect(() => {
-        getPostComments();
+        getPostComments(id, postId);
     }, [postId]);
 
     const create = () => {
-        //TODO Add Comment Form
+        navigate("/postcomment/add")
     };
 
     return (
         <div className="comments text-center">
             <h3>Comments</h3>
+            <Button onClick={() => navigate(-1)}>Back</Button>
             <Button color="primary" onClick={create}>
                 Add Comment
             </Button>
@@ -30,11 +32,11 @@ export const PostCommentList = () => {
                 className="bg-light border"
                 fluid="xl"
             >
-                {postComments.map((postComment) => {
+                {postComments.map((postComment) => ( 
                     <Col className="bg-light border" key={postComment.id}>
                         <PostComment postComment={postComment} />
                     </Col>
-                })}
+                ))}
             </Container>
         </div>
     )

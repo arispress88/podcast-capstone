@@ -66,7 +66,7 @@ export const PostDetails = () => {
 
     const viewComments = () => {
         return <>
-            <Button color="primary" onClick={() => navigate(`/postcomment/getpostcommentsbypostid/${postComment.postId}`)}>View Comments</Button></>
+            <Button color="primary" onClick={() => navigate(`/postcomment/getpostcommentsbypostid/${post.id}?postId=${postComment.postId}`)}>View Comments</Button></>
     }
 
     return (
@@ -85,6 +85,7 @@ export const PostDetails = () => {
                 {viewComments()}                
             </CardBody>
         </Card>
+        <Button onClick={() => navigate(-1)}>Back</Button>
         </div>
     );
 };

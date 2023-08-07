@@ -14,7 +14,7 @@ namespace AEWRPod2.Controllers
             _postCommentRepository = postCommentRepository;
         }
 
-        [HttpGet("GetPostCommentsByPostId/{postId}")]
+        [HttpGet("GetPostCommentsByPostId/{id}")]
         public IActionResult GetPostCommentsByPostId(int postId)
         {
             var comment = _postCommentRepository.GetPostCommentsByPostId(postId).OrderByDescending(c => c.CreateDateTime).ToList();
@@ -25,6 +25,13 @@ namespace AEWRPod2.Controllers
             }
 
             return Ok(comment);
+        }
+
+        [HttpPost]
+        public IActionResult Post(PostComment postComment)
+        {
+            _postCommentRepository.Add(postComment);
+            return CreatedAtAction("GetPostCommentsByPostId", new { id = postComment.Id }, postComment);
         }
     }
 }
