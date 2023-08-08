@@ -106,6 +106,10 @@ export const EditUserProfile = () => {
                         <Button color="primary" onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>
                             Save
                         </Button>
+                        <Button
+                            color="secondary"
+                            size="md"
+                            onClick={() => navigate(-1)}>Back</Button>
                     </CardBody>
                 </Card>
             </div>

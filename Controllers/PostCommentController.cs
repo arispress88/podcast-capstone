@@ -33,5 +33,17 @@ namespace AEWRPod2.Controllers
             _postCommentRepository.Add(postComment);
             return CreatedAtAction("GetPostCommentsByPostId", new { id = postComment.Id }, postComment);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, PostComment postComment)
+        {
+            if (id != postComment.Id)
+            {
+                return BadRequest();
+            }
+
+            _postCommentRepository.Update(postComment);
+            return NoContent();
+        }
     }
 }

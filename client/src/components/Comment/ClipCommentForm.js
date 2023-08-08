@@ -1,33 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { addPostComment } from "../../Managers/CommentManager";
+import { addClipComment } from "../../Managers/CommentManager";
 import { Button, Form, FormGroup, Card, CardBody, Label, Input } from "reactstrap";
-import { getPostById } from "../../Managers/PostManager";
 
-export const PostCommentForm = ({route}) => {
+export const ClipCommentForm = () => {
     const localAewrUser = localStorage.getItem("userProfile");
     const aewrUserObject = JSON.parse(localAewrUser);
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [postComment, update] = useState({
+    const [clipComment, update] = useState({
         body: "",
         createDateTime: Date.now(),
         userProfileId: aewrUserObject.id,
-        postId: location.state.postId,
+        clipId: location.state.clipId,
     })
 
     const handleSaveButtonClick = (e) => {
         e.preventDefault()
 
-        const postCommentToAPI = {
-            Body: postComment.body,
+        const clipCommenttoAPI = {
+            Body: clipComment.body,
             CreateDateTime: new Date().toISOString(),
             UserProfileId: aewrUserObject.id,
-            PostId: location.state.postId
+            ClipId: location.state.clipId
         };
 
-        return addPostComment(postCommentToAPI).then(navigate("/posts"))
+        return addClipComment(clipCommenttoAPI).then(navigate("/clips"))
     };
 
     return (
@@ -43,10 +42,10 @@ export const PostCommentForm = ({route}) => {
                                     type="text"
                                     className="form-control"
                                     placeholder="Type comment here..."
-                                    value={postComment.body}
+                                    value={clipComment.body}
                                     onChange={
                                         (e) => {
-                                            const copy = {...postComment}
+                                            const copy = {...clipComment}
                                             copy.body = e.target.value
                                             update(copy)
                                         }

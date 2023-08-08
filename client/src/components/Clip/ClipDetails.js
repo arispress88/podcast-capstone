@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Alert, Button, Card } from "reactstrap";
 import { deleteClip, getClipById } from "../../Managers/ClipManager";
 import { TikTokEmbed } from "react-social-media-embed";
+import { getClipCommentsById } from "../../Managers/CommentManager";
 
 export const ClipDetails = () => {
     const [clip, setClip] = useState();
@@ -12,6 +13,7 @@ export const ClipDetails = () => {
     const localAewrUser = localStorage.getItem("userProfile");
     const aewrUserObject = JSON.parse(localAewrUser)
     const isAdmin = aewrUserObject?.userType?.id === 1;
+    const clipComment = getClipCommentsById();
 
     useEffect(() => {
         getClipById(id).then(setClip)
@@ -58,10 +60,17 @@ export const ClipDetails = () => {
         }
     }
 
+    const viewComments = () => {
+        return <>
+        <Button color="info" onClick={() => navigate(`/clipcomment/getclipcomments/${clip.id}?clipId=${clipComment.clipId}`)}>View Comments</Button>
+            </>
+    }
+
     return (
         <div className="clips text-center">
             <div>
             {deleteButtonForAdmin()}
+            {viewComments()}
             <Button
                 color="secondary"
                 size="md"

@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using AEWRPod2.Models;
 using AEWRPod2.Utils;
-using System.Security.Cryptography;
 
 namespace AEWRPod2.Repositories
 {
-    public class PostCommentRepository : BaseRepository, IPostCommentRepository
+    public class ClipCommentRepository : BaseRepository, IClipCommentRepository
     {
-        public PostCommentRepository(IConfiguration configuration) : base(configuration) { }
+        public ClipCommentRepository(IConfiguration configuration) : base(configuration) { }
 
-        public List<PostComment> GetPostCommentsByPostId(int postId)
+        public List<ClipComment> GetClipComments(int clipId)
         {
             using (var conn = Connection)
             {
@@ -20,50 +18,50 @@ namespace AEWRPod2.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT pc.Id, pc.Body, pc.CreateDateTime, pc.UserProfileId, pc.PostId,
+                        SELECT cc.Id, cc.Body, cc.CreateDateTime, cc.UserProfileId, cc.ClipId,
                                up.DisplayName AS UserProfileDisplayName,
                                up.CreateDateTime AS UserProfileCreateDateTime
-                          FROM PostComment pc
-                               LEFT JOIN UserProfile up ON pc.UserProfileId = up.Id
-                               LEFT JOIN Post p ON pc.PostId = p.Id
-                         WHERE pc.PostId = @postId
-                      ORDER BY pc.CreateDateTime DESC";
+                          FROM ClipComment cc
+                               LEFT JOIN UserProfile up ON cc.UserProfileId = up.Id
+                               LEFT JOIN Clip c ON cc.ClipId = c.Id
+                         WHERE cc.ClipId = @clipId
+                      ORDER BY cc.CreateDateTime DESC";
 
-                    DbUtils.AddParameter(cmd, "@postId", postId);
+                    DbUtils.AddParameter(cmd, "@clipId", clipId);
 
                     var reader = cmd.ExecuteReader();
 
-                    var postComments = new List<PostComment>();
+                    var clipComments = new List<ClipComment>();
 
                     while (reader.Read())
                     {
-                        postComments.Add(new PostComment()
+                        clipComments.Add(new ClipComment()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             Body = DbUtils.GetString(reader, "Body"),
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            PostId = DbUtils.GetInt(reader, "PostId"),
+                            ClipId = DbUtils.GetInt(reader, "ClipId"),
                             UserProfile = new UserProfile()
                             {
                                 Id = DbUtils.GetInt(reader, "UserProfileId"),
                                 DisplayName = DbUtils.GetString(reader, "UserProfileDisplayName"),
                                 CreateDateTime = DbUtils.GetDateTime(reader, "UserProfileCreateDateTime"),
                             },
-                            Post = new Post()
+                            Clip = new Clip()
                             {
-                                Id = DbUtils.GetInt(reader, "PostId"),
+                                Id = DbUtils.GetInt(reader, "ClipId"),
                             }
                         });
                     }
                     reader.Close();
 
-                    return postComments;
+                    return clipComments;
                 }
             }
         }
 
-        public void Add(PostComment postComment)
+        public void Add(ClipComment clipComment)
         {
             using (var conn = Connection)
             {
@@ -71,22 +69,21 @@ namespace AEWRPod2.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-
-                        INSERT INTO PostComment (Body, CreateDateTime, UserProfileId, PostId)
+                        INSERT INTO ClipComment (Body, CreateDateTime, UserProfileId, ClipId)
                         OUTPUT INSERTED.ID
-                        VALUES (@body, @createDateTime, @userProfileId, @postId)";
+                        VALUES (@body, @createDateTime, @userProfileId, @clipId)";
 
-                    cmd.Parameters.AddWithValue("@body", postComment.Body);
-                    cmd.Parameters.AddWithValue("@createDateTime", postComment.CreateDateTime);
-                    cmd.Parameters.AddWithValue("@userProfileId", postComment.UserProfileId);
-                    cmd.Parameters.AddWithValue("@postId", postComment.PostId);
+                    cmd.Parameters.AddWithValue("@body", clipComment.Body);
+                    cmd.Parameters.AddWithValue("@createDateTime", clipComment.CreateDateTime);
+                    cmd.Parameters.AddWithValue("@userProfileId", clipComment.UserProfileId);
+                    cmd.Parameters.AddWithValue("@clipId", clipComment.ClipId);
 
-                    postComment.Id = (int)cmd.ExecuteScalar();
+                    clipComment.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
 
-        public void Update(PostComment postComment)
+        public void Update(ClipComment clipComment)
         {
             using (var conn = Connection)
             {
@@ -94,19 +91,18 @@ namespace AEWRPod2.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-
-                        UPDATE PostComment
+                        UPDATE ClipComment
                            SET Body = @body,
                                CreateDateTime = @createDateTime,
                                UserProfileId = @userProfileId,
-                               PostId = @postId
+                               ClipId = @clipId
                          WHERE Id = @id";
 
-                    cmd.Parameters.AddWithValue("@body", postComment.Body);
-                    cmd.Parameters.AddWithValue("@createDateTime", postComment.CreateDateTime);
-                    cmd.Parameters.AddWithValue("@userProfileId", postComment.UserProfileId);
-                    cmd.Parameters.AddWithValue("@postId", postComment.PostId);
-                    cmd.Parameters.AddWithValue("@id", postComment.Id);
+                    cmd.Parameters.AddWithValue("@body", clipComment.Body);
+                    cmd.Parameters.AddWithValue("@createDateTime", clipComment.CreateDateTime);
+                    cmd.Parameters.AddWithValue("@userProfileId", clipComment.UserProfileId);
+                    cmd.Parameters.AddWithValue("@clipId", clipComment.ClipId);
+                    cmd.Parameters.AddWithValue("@id", clipComment.Id);
 
                     cmd.ExecuteNonQuery();
                 }

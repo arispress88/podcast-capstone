@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Col, Container, Button } from "reactstrap";
-import { getPostCommentsById } from "../../Managers/CommentManager";
-import { PostComment } from "./PostComment";
+import { getClipCommentsById } from "../../Managers/CommentManager";
+import { ClipComment } from "./ClipComment";
 
-export const PostCommentList = () => {
-    const [postComments, setPostComments] = useState([]);
-    const { id, postId } = useParams();
+export const ClipCommentList = () => {
+    const [clipComments, setClipComments] = useState([]);
+    const { id, clipId } = useParams();
     const navigate = useNavigate();
 
-    const getPostComments = (id, postId) => {
-        getPostCommentsById(id, postId).then((allPostComments) => setPostComments(allPostComments));
+    const getClipComments = (id, clipId) => {
+        getClipCommentsById(id, clipId).then((allClipComments) => setClipComments(allClipComments))
     };
 
     useEffect(() => {
-        getPostComments(id, postId);
-    }, [postId]);
+        getClipComments(id, clipId)
+    }, [clipId]);
 
     const create = () => {
-        navigate("/postcomment/add", {state:{postId: postId}})
+        navigate("/clipcomment/add", {state:{clipId: clipId}})
     };
 
     return (
@@ -32,9 +32,9 @@ export const PostCommentList = () => {
                 className="bg-light border"
                 fluid="xl"
             >
-                {postComments.map((postComment) => ( 
-                    <Col className="bg-light border" key={postComment.id}>
-                        <PostComment postComment={postComment} />
+                {clipComments.map((clipComment) => (
+                    <Col className="bg-light border" key={clipComment.id}>
+                        <ClipComment clipComment={clipComment} />
                     </Col>
                 ))}
             </Container>

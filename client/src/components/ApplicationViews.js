@@ -17,6 +17,9 @@ import { WWEClip } from "./Clip/WWEClip";
 import { WCWClip } from "./Clip/WCWClip";
 import { PostCommentList } from "./Comment/PostCommentList";
 import { PostCommentForm } from "./Comment/PostCommentForm";
+import { ClipCommentList } from "./Comment/ClipCommentList";
+import { ClipCommentForm } from "./Comment/ClipCommentForm";
+import { PostCommentEdit } from "./Clip/PostCommentEdit";
 
 export default function ApplicationViews() {
     return (
@@ -37,6 +40,9 @@ export default function ApplicationViews() {
             <Route path="/clips/category/WCW" element={<WCWClip />} />
             <Route path="/postcomment/getpostcommentsbypostid/:postId" element={<PostCommentList />} />
             <Route path="/postcomment/add" element={<PostCommentForm />} />
+            <Route path="/postcomment/edit/:id" element={<PostCommentEdit />} />
+            <Route path="/clipcomment/getclipcomments/:clipId" element={<ClipCommentList />} />
+            <Route path="/clipcomment/add" element={<ClipCommentForm />} />
         </Routes>
     );
 }

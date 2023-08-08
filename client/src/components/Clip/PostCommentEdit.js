@@ -1,33 +1,44 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { addPostComment } from "../../Managers/CommentManager";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { editPostComment, getPostCommentsById } from "../../Managers/CommentManager";
 import { Button, Form, FormGroup, Card, CardBody, Label, Input } from "reactstrap";
-import { getPostById } from "../../Managers/PostManager";
 
-export const PostCommentForm = ({route}) => {
-    const localAewrUser = localStorage.getItem("userProfile");
-    const aewrUserObject = JSON.parse(localAewrUser);
+export const PostCommentEdit = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const localAewrUser = localStorage.getItem("userProfile");
+    const aewrUserObject = JSON.parse(localAewrUser)
+    const { postCommentId } = useParams();
+ 
 
     const [postComment, update] = useState({
         body: "",
         createDateTime: Date.now(),
         userProfileId: aewrUserObject.id,
-        postId: location.state.postId,
     })
+
+    useEffect(() => {
+        getPostCommentsById(postCommentId)
+            .then((postCommentArray) => {
+                update(postCommentArray)
+            })
+    }, [postCommentId]);
 
     const handleSaveButtonClick = (e) => {
         e.preventDefault()
 
-        const postCommentToAPI = {
+        const postCommentToChange = {
+            Id: parseInt(postCommentId),
             Body: postComment.body,
-            CreateDateTime: new Date().toISOString(),
+            CreateDateTime: postComment.createDateTime,
             UserProfileId: aewrUserObject.id,
-            PostId: location.state.postId
         };
 
-        return addPostComment(postCommentToAPI).then(navigate("/posts"))
+
+        return editPostComment(postCommentToChange)
+            .then(() => {
+                navigate("/posts")
+            })
     };
 
     return (
@@ -37,7 +48,7 @@ export const PostCommentForm = ({route}) => {
                     <CardBody>
                         <Form>
                             <FormGroup>
-                                <Label for="body">Enter Your Comment</Label>
+                                <Label for="body">Edit Your Comment</Label>
                                 <Input
                                     required autoFocus
                                     type="text"
@@ -46,7 +57,7 @@ export const PostCommentForm = ({route}) => {
                                     value={postComment.body}
                                     onChange={
                                         (e) => {
-                                            const copy = {...postComment}
+                                            const copy = { ...postComment }
                                             copy.body = e.target.value
                                             update(copy)
                                         }
