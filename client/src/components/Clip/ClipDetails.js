@@ -62,7 +62,7 @@ export const ClipDetails = () => {
 
     const viewComments = () => {
         return <>
-        <Button color="info" onClick={() => navigate(`/clipcomment/getclipcomments/${clip.id}?clipId=${clipComment.clipId}`)}>View Comments</Button>
+        <Button color="info" onClick={() => navigate(`/clipcomment/getclipcomments/${clip.id}`)}>View Comments</Button>
             </>
     }
 

@@ -15,7 +15,7 @@ export const PostDetails = () => {
 
     useEffect(() => {
         getPostById(id).then(setPost)
-    }, [])
+    }, [id])
 
     if (!post) {
         return null;
@@ -66,7 +66,7 @@ export const PostDetails = () => {
 
     const viewComments = () => {
         return <>
-            <Button color="primary" onClick={() => navigate(`/postcomment/getpostcommentsbypostid/${post.id}?postId=${postComment.postId}`)}>View Comments</Button></>
+            <Button color="primary" onClick={() => navigate(`/postcomment/getpostcommentsbypostid/${post.id}`)}>View Comments</Button></>
     }
 
     return (

@@ -6,15 +6,15 @@ import { PostComment } from "./PostComment";
 
 export const PostCommentList = () => {
     const [postComments, setPostComments] = useState([]);
-    const { id, postId } = useParams();
+    const { postId } = useParams();
     const navigate = useNavigate();
 
-    const getPostComments = (id, postId) => {
-        getPostCommentsById(id, postId).then((allPostComments) => setPostComments(allPostComments));
+    const getPostComments = (postId) => {
+        getPostCommentsById(postId).then((allPostComments) => setPostComments(allPostComments));
     };
 
     useEffect(() => {
-        getPostComments(id, postId);
+        getPostComments(postId);
     }, [postId]);
 
     const create = () => {

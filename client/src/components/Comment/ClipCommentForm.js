@@ -8,12 +8,13 @@ export const ClipCommentForm = () => {
     const aewrUserObject = JSON.parse(localAewrUser);
     const navigate = useNavigate();
     const location = useLocation();
+    const clipId = location.state.clipId
 
     const [clipComment, update] = useState({
         body: "",
         createDateTime: Date.now(),
         userProfileId: aewrUserObject.id,
-        clipId: location.state.clipId,
+        clipId: clipId,
     })
 
     const handleSaveButtonClick = (e) => {
@@ -23,10 +24,10 @@ export const ClipCommentForm = () => {
             Body: clipComment.body,
             CreateDateTime: new Date().toISOString(),
             UserProfileId: aewrUserObject.id,
-            ClipId: location.state.clipId
+            ClipId: clipId
         };
 
-        return addClipComment(clipCommenttoAPI).then(navigate("/clips"))
+        return addClipComment(clipCommenttoAPI).then(navigate(`/clips/${clipId}`))
     };
 
     return (

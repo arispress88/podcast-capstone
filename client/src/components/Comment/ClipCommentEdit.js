@@ -1,45 +1,56 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { editPostComment, getPostCommentsById } from "../../Managers/CommentManager";
+import { editClipComment, getClipCommentsById } from "../../Managers/CommentManager";
 import { Button, Form, FormGroup, Card, CardBody, Label, Input } from "reactstrap";
 
-export const PostCommentEdit = () => {
+export const ClipCommentEdit = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const localAewrUser = localStorage.getItem("userProfile");
     const aewrUserObject = JSON.parse(localAewrUser)
-    const { postCommentId } = useParams();
- 
+    const { commentId } = useParams();
+    const clipId = location.state.clipId
 
-    const [postComment, update] = useState({
+    const [editedClipComment, setEditedClipComment] = useState({
         body: "",
         createDateTime: Date.now(),
         userProfileId: aewrUserObject.id,
+        clipId: clipId
     })
 
+    console.log("clip comment id:", commentId)
+    console.log("clip id:", clipId)
+
     useEffect(() => {
-        getPostCommentsById(postCommentId)
-            .then((postCommentArray) => {
-                update(postCommentArray)
+        getClipCommentsById(commentId)
+            .then((res) => {
+                setEditedClipComment(res)
             })
-    }, [postCommentId]);
+    }, [commentId, getClipCommentsById]);
+
+    if (!editedClipComment) {
+        return null;
+    }
 
     const handleSaveButtonClick = (e) => {
         e.preventDefault()
 
-        const postCommentToChange = {
-            Id: parseInt(postCommentId),
-            Body: postComment.body,
-            CreateDateTime: postComment.createDateTime,
-            UserProfileId: aewrUserObject.id,
+        const clipCommentToChange = {
+            id: commentId,
+            body: editedClipComment.body,
+            createDateTime: new Date().toISOString(),
+            userProfileId: aewrUserObject.id,
+            clipId: clipId
         };
 
-
-        return editPostComment(postCommentToChange)
+        return editClipComment(clipCommentToChange)
             .then(() => {
-                navigate("/posts")
+                navigate(`/clips/${clipId}`)
             })
     };
+
+    console.log(editedClipComment)
+    console.log(editedClipComment.id)
 
     return (
         <div className="container pt-4">
@@ -54,12 +65,12 @@ export const PostCommentEdit = () => {
                                     type="text"
                                     className="form-control"
                                     placeholder="Type comment here..."
-                                    value={postComment.body}
+                                    value={editedClipComment.body}
                                     onChange={
                                         (e) => {
-                                            const copy = { ...postComment }
+                                            const copy = { ...editedClipComment }
                                             copy.body = e.target.value
-                                            update(copy)
+                                            setEditedClipComment(copy)
                                         }
                                     }
                                 />
@@ -70,6 +81,12 @@ export const PostCommentEdit = () => {
                             onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}
                         >
                             Submit
+                        </Button>
+                        <Button
+                            color="secondary"
+                            onClick={() => navigate(-1)}
+                        >
+                            Back
                         </Button>
                     </CardBody>
                 </Card>

@@ -1,7 +1,7 @@
 const apiUrl = "https://localhost:5001";
 
-export const getPostCommentsById = (id, postId) => {
-    return fetch(`${apiUrl}/api/postcomment/getpostcommentsbypostid/${id}?postId=${postId}`)
+export const getPostCommentsById = (postId) => {
+    return fetch(`${apiUrl}/api/postcomment/getpostcommentsbypostid/${postId}`)
     .then((r) => r.json())
 };
 
@@ -38,7 +38,7 @@ export const editPostComment = (postComment) => {
         },
         body: JSON.stringify(postComment)
     })
-    .then(() => getPostCommentsById())
+    .then(() => getPostCommentsById(postComment.id))
 }
 
 export const editClipComment = (clipComment) => {
@@ -48,6 +48,20 @@ export const editClipComment = (clipComment) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(clipComment)
+    })
+    .then(() => getClipCommentsById())
+}
+
+export const deletePostComment = (id) => {
+    return fetch(`${apiUrl}/api/postcomment/${id}`, {
+        method: "DELETE",
+    })
+    .then(() => getPostCommentsById())
+}
+
+export const deleteClipComment = (id) => {
+    return fetch(`${apiUrl}/api/clipcomment/${id}`, {
+        method: "DELETE",
     })
     .then(() => getClipCommentsById())
 }
