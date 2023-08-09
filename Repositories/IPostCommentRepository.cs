@@ -7,5 +7,6 @@ namespace AEWRPod2.Repositories
         List<PostComment> GetPostCommentsByPostId(int postId);
         void Add(PostComment postComment);
         void Update(PostComment postComment);
+        void Delete(int postCommentId);
     }
 }

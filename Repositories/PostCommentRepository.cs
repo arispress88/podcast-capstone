@@ -112,5 +112,19 @@ namespace AEWRPod2.Repositories
                 }
             }
         }
+
+        public void Delete(int postCommentId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM PostComment WHERE Id = @id";
+                    DbUtils.AddParameter(cmd, "@id", postCommentId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

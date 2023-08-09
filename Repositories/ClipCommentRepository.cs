@@ -108,5 +108,19 @@ namespace AEWRPod2.Repositories
                 }
             }
         }
+
+        public void Delete(int clipCommentId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM ClipComment WHERE Id = @id";
+                    DbUtils.AddParameter(cmd, "@id", clipCommentId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

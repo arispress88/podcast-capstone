@@ -46,5 +46,12 @@ namespace AEWRPod2.Controllers
             _clipCommentRepository.Update(clipComment);
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _clipCommentRepository.Delete(id);
+            return NoContent();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace AEWRPod2.Repositories
         void Add(ClipComment clipComment);
         void Update(ClipComment clipComment);
         List<ClipComment> GetClipComments(int clipId);
+        void Delete(int clipCommentId);
     }
 }
