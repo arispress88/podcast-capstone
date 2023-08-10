@@ -54,10 +54,10 @@ insert into [ClipComment] ([Id], [Body], [CreateDateTime], [UserProfileId], [Cli
 set identity_insert [ClipComment] off
 
 set identity_insert [FullEpisode] on
-insert into [FullEpisode] ([Id], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (1, 'https://open.spotify.com/episode/4YercTfnghn7kieWcy6CoM?si=8f38036170934a6f', '2023-07-27', 1);
-insert into [FullEpisode] ([Id], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (2, 'https://open.spotify.com/episode/6rw9iPFm6PmhO8BQtRJ44y?si=686ca98ea9a24b9a', '2023-07-27', 2);
-insert into [FullEpisode] ([Id], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (3, 'https://open.spotify.com/episode/0vaGSUyRalNQyIpML2KNS3?si=dd12b45eb52d4dd8', '2023-07-27', 1);
-insert into [FullEpisode] ([Id], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (4, 'https://open.spotify.com/episode/27COSqQlMXbe8eK1yBFMxL?si=25249593df984da3', '2023-07-27', 2);
+insert into [FullEpisode] ([Id], [Title], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (1, 'Raw is War 11/10/97', 'https://open.spotify.com/episode/4YercTfnghn7kieWcy6CoM?si=8f38036170934a6f', '2023-07-27', 1);
+insert into [FullEpisode] ([Id], [Title], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (2, 'Monday Nitro 10/27/97', 'https://open.spotify.com/episode/6rw9iPFm6PmhO8BQtRJ44y?si=686ca98ea9a24b9a', '2023-07-27', 2);
+insert into [FullEpisode] ([Id], [Title], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (3, 'Raw is War 11/3/97', 'https://open.spotify.com/episode/0vaGSUyRalNQyIpML2KNS3?si=dd12b45eb52d4dd8', '2023-07-27', 1);
+insert into [FullEpisode] ([Id], [Title], [EpisodeUrl], [CreateDateTime], [CategoryId]) values (4, 'WCW Halloween Havoc 97', 'https://open.spotify.com/episode/27COSqQlMXbe8eK1yBFMxL?si=25249593df984da3', '2023-07-27', 2);
 set identity_insert [FullEpisode] off
 
 set identity_insert [FullEpisodeComment] on

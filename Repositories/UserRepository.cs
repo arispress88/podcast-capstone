@@ -50,5 +50,78 @@ namespace AEWRPod2.Repositories
                 }
             }
         }
+
+        public void Add(UserProfile userProfile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        INSERT INTO UserProfile (FirstName, LastName, DisplayName, Email, CreateDateTime, UserTypeId)
+                        OUTPUT INSERTED.ID
+                        VALUES (@FirstName, @LastName, @DisplayName, @Email, @CreateDateTime, @UserTypeId)";
+
+                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
+                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
+                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
+
+                    userProfile.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        public List<UserType> GetUserTypes()
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT Id, Name FROM UserType";
+
+                    var reader = cmd.ExecuteReader();
+
+                    var userTypes = new List<UserType>();
+                    while (reader.Read())
+                    {
+                        var userType = new UserType()
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name")
+                        };
+
+                        userTypes.Add(userType);
+                    }
+
+                    reader.Close();
+                    return userTypes;
+                }
+            }
+        }
+
+        public void UpdateUserType(int userId, int userTypeId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        UPDATE UserProfile
+                        SET UserTypeId = @UserTypeId
+                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@UserTypeId", userTypeId);
+                    DbUtils.AddParameter(cmd, "@Id", userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

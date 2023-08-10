@@ -57,5 +57,32 @@ namespace AEWRPod2.Controllers
             _userProfileRepository.Update(userProfile);
             return NoContent();
         }
+
+        [HttpPost]
+        public IActionResult Post(UserProfile userProfile)
+        {
+            userProfile.CreateDateTime = DateTime.Now;
+            userProfile.UserTypeId = UserType.USER_ID;
+            _userRepository.Add(userProfile);
+            return CreatedAtAction("GetByEmail", new { email = userProfile.Email }, userProfile);
+        }
+
+        [HttpGet("GetUserTypes")]
+        public IActionResult GetUserTypes()
+        {
+            return Ok(_userRepository.GetUserTypes());
+        }
+
+        [HttpPatch("UpdateUserType/{id}/{userTypeId}")]
+        public IActionResult UpdateUserType(int id, [FromBody] int userTypeId)
+        {
+            UserProfile userProfile = _userProfileRepository.GetUserProfileById(id);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            _userRepository.UpdateUserType(id, userTypeId);
+            return NoContent();
+        }
     }
 }

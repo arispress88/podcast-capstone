@@ -93,6 +93,7 @@ CREATE TABLE [PostComment] (
 
 CREATE TABLE [FullEpisode] (
 	[Id] integer PRIMARY KEY IDENTITY,
+	[Title] nvarchar(255) NOT NULL,
 	[EpisodeUrl] nvarchar(1000) NOT NULL,
 	[CreateDateTime] datetime NOT NULL,
 	[CategoryId] integer NOT NULL,

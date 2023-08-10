@@ -51,3 +51,20 @@ export const register = (userObject, password) => {
     })
     .then(() => getAllUserProfiles());
   }
+
+  //Retrieve user types
+  export const getAllUserTypes = () => {
+    return fetch(`${apiUrl}/api/userprofile/GetUserTypes`)
+    .then((r) => r.json())
+  }
+
+  //Change the user type
+  export const updateUserType = (userProfileId, userTypeId) => {
+    return fetch(`${apiUrl}/api/userprofile/UpdateUserType/${userProfileId}/${userTypeId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userTypeId)
+    })
+  }

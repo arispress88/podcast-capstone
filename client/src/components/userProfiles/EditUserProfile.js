@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserProfileById, editUserProfile } from "../../Managers/UserProfileManager";
+import { getUserProfileById, editUserProfile, updateUserType, getAllUserTypes } from "../../Managers/UserProfileManager";
 import { Form, FormGroup, Card, CardBody, Label, Button, Input } from "reactstrap";
 
 export const EditUserProfile = () => {
@@ -9,16 +9,26 @@ export const EditUserProfile = () => {
         lastName: "",
         displayName: "",
         email: "",
+        userTypeId: ""
     });
+    const [userTypes, setUserTypes] = useState([]);
     const navigate = useNavigate();
     const { userProfileId } = useParams();
 
     useEffect(() => {
         getUserProfileById(userProfileId)
         .then((userProfileArray) => {
-            update(userProfileArray)
+            update(userProfileArray);
+
+            getAllUserTypes().then(setUserTypes)
         });
     }, []);
+
+    const handleFieldChange = (e) => {
+        const stateToChange = { ...userProfile };
+        stateToChange[e.target.id] = e.target.value
+        update(stateToChange)
+    }
 
     const handleSaveButtonClick = (e) => {
         e.preventDefault()
@@ -34,6 +44,19 @@ export const EditUserProfile = () => {
                 <Card className="col-sm-12 col-lg-6">
                     <CardBody>
                         <Form>
+                            <FormGroup>
+                                <Label for="userTypeId">Role</Label>
+                                <Input
+                                    type="select"
+                                    id="userTypeId"
+                                    onChange={handleFieldChange}
+                                    value={userProfile.userTypeId}
+                                >
+                                    {userTypes.map(type =>
+                                        <option key={type.id} value={type.id}>{type.name}</option>
+                                    )}
+                                </Input>
+                            </FormGroup>
                             <FormGroup>
                                 <Label for="firstName">First Name</Label>
                                 <Input
