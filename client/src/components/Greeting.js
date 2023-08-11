@@ -1,4 +1,5 @@
 import React from "react";
+import "./Greeting.css";
 
 export default function Greeting () {
     return (
@@ -18,7 +19,7 @@ export default function Greeting () {
                 <p><strong>TikTok: @aewr316</strong></p>
                 <p><strong>YouTube: Attitude Era Wrestling Review</strong></p>
             </div>
-            <p><strong>Email us!</strong></p>
+            <p><strong className="email">Email us!</strong></p>
             <strong><a href="mailto:aewr316@gmail.com">aewr316@gmail.com</a></strong>
         </div>
         </span>

@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle, CardText, Button, Alert } from "reactstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { deletePost, getPostById } from "../../Managers/PostManager";
 import { getPostCommentsById } from "../../Managers/CommentManager";
+import "./Post.css";
 
 export const PostDetails = () => {
     const [post, setPost] = useState();

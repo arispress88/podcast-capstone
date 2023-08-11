@@ -3,6 +3,8 @@ import { Col, Container, Row, Button } from "reactstrap";
 import { getAllClips } from "../../Managers/ClipManager";
 import { Clip } from "./Clip";
 import { useNavigate } from "react-router-dom";
+import '../Post/Post.css';
+
 
 export const WCWClip = () => {
     const [clips, setClips] = useState([]);
@@ -22,7 +24,7 @@ export const WCWClip = () => {
     return (
         
         <div className="clips text-center">
-            <h2>Clips from WCW Episodes</h2>
+            <h2 className="posts-title">Clips from WCW Episodes</h2>
             <Container
                 className="bg-light border"
                 fluid

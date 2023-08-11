@@ -20,6 +20,7 @@ export const UserProfileList = () => {
     const isAdmin = loggedInUser?.userType?.id === 1;
 
     return (
+        <div className="user-profile">
         <Container>
             <Row>
                 <Col>
@@ -38,5 +39,6 @@ export const UserProfileList = () => {
                 ))}
             </Row>
         </Container>
+    </div>
     )
 }

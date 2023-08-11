@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card, CardBody, Button } from "reactstrap";
 import { getAllUserProfiles } from "../../Managers/UserProfileManager";
+import "./UserProfile.css";
 
 export const UserProfile = ({ userProfileProp, isAdmin }) => {
     const [userProfiles, setUserProfiles] = useState([]);
@@ -14,7 +15,7 @@ export const UserProfile = ({ userProfileProp, isAdmin }) => {
     }, []);
 
     return (
-        <Card className="m-4 text-center">
+        <Card className="m-4 text-center" color="light">
             <CardBody>
                 <div>
                     <strong className="userProfile-title">

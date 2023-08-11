@@ -3,6 +3,7 @@ import { getAllCategories } from "../../Managers/CategoryManager";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Container, Row } from "reactstrap";
 import { Category } from "./Category";
+import "./Category.css";
 
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
@@ -23,7 +24,7 @@ const CategoryList = () => {
 
     return (
         <div className="categories text-center">
-            <h2>Categories</h2>
+            <h2 className="categories-title">Categories</h2>
             <Container>
                 <Row>
                     {categories.map((category) => (
@@ -33,6 +34,11 @@ const CategoryList = () => {
                     ))}
                 </Row>
             </Container>
+            <Button
+                color="secondary"
+                size="lg"
+                onClick={backToHome}
+            >Back</Button>
         </div>
     );
 };

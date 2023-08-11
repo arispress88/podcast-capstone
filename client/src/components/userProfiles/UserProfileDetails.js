@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getUserProfileById } from "../../Managers/UserProfileManager";
 import { Card, CardBody, CardImg, CardTitle, CardSubtitle, Button, Container, Row, Col } from "reactstrap";
+import "./UserProfile.css";
 
 export const UserProfileDetails = () => {
     const { userProfileId } = useParams();
@@ -20,7 +21,7 @@ export const UserProfileDetails = () => {
     const isAdmin = loggedInUser?.userType?.id === 1;
 
     return (
-        <Container>
+        <Container className="user-profile-container">
             <Button onClick={() => navigate(-1)}>Back</Button>
             <Row>
                 <Col sm="12" md={{ size: 6, offset: 3}}>

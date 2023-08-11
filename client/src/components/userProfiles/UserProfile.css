@@ -1,0 +1,14 @@
+.user-profile-container {
+    background: linear-gradient(45deg, red, blue);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.user-profile {
+    background: linear-gradient(45deg, red, blue);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    color: antiquewhite;
+}

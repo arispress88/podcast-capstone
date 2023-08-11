@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { useNavigate } from "react-router-dom";
 import { register } from "../Managers/UserProfileManager";
+import './Login.css'
 
 
 export default function Register({setIsLoggedIn}) {
@@ -54,7 +55,9 @@ export default function Register({setIsLoggedIn}) {
   }
 
   return (
-    <Form onSubmit={registerClick}>
+    <div className="login-container">
+      <div className="big-image"></div>
+    <Form className="login-form" onSubmit={registerClick}>
       <fieldset>
       <FormGroup>
           <Label htmlFor="userType">User Type (Admin = 1, User = 2)</Label>
@@ -89,5 +92,6 @@ export default function Register({setIsLoggedIn}) {
         </FormGroup>
       </fieldset>
     </Form>
+    </div>
   );
 }

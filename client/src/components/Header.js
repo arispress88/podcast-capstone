@@ -18,7 +18,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
 
     return (
         <div>
-            <Navbar color="primary" light expand="md">
+            <Navbar color="secondary" dark expand="md">
                 <NavbarBrand tag={RRNavLink} to="/">
                     <img className="logo" src={logo} alt="AEWR Logo" />
                     

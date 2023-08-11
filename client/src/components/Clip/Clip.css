@@ -1,0 +1,15 @@
+.clips {
+    background-image: url("../../img/aewr-big.png");
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.clips-title {
+    color: antiquewhite;
+    background-color: black;
+}
+
+/* .clips .bg-light {
+    background-color: transparent !important;
+} */

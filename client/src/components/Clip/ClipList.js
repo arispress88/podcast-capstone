@@ -3,6 +3,7 @@ import { getAllClips } from "../../Managers/ClipManager";
 import { Col, Container, Row, Button } from "reactstrap";
 import { Clip } from "./Clip";
 import { useNavigate } from "react-router-dom";
+import "./Clip.css";
 
 export const ClipList = () => {
     const [clips, setClips] = useState([]);
@@ -25,7 +26,7 @@ export const ClipList = () => {
 
     return (
         <div className="clips text-center">
-            <h2>Clips from the Show</h2>
+            <h2 className="clips-title">Clips from the Show</h2>
             {isAdmin && (
                 <Button
                     color="info"

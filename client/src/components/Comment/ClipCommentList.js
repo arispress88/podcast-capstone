@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Col, Container, Button } from "reactstrap";
 import { getClipCommentsById } from "../../Managers/CommentManager";
 import { ClipComment } from "./ClipComment";
+import '../Post/Post.css';
+
 
 export const ClipCommentList = () => {
     const [clipComments, setClipComments] = useState([]);
@@ -23,7 +25,7 @@ export const ClipCommentList = () => {
 
     return (
         <div className="comments text-center">
-            <h3>Comments</h3>
+            <h3 className="posts-title">Comments</h3>
             <Button onClick={() => navigate(-1)}>Back</Button>
             <Button color="primary" onClick={create}>
                 Add Comment

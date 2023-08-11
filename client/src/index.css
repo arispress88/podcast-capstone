@@ -23,3 +23,9 @@ code {
 .wcw {
   max-height: 100px;
 }
+
+.gradient-background {
+  background: linear-gradient(90deg, #FF0000, #000000);
+  min-height: 100vh;
+  overflow: hidden;
+}

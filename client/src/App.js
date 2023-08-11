@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
+import { GlobalLayout } from './components/GlobalLayout';
 import Header from "./components/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { useEffect } from 'react';
@@ -18,12 +19,14 @@ function App() {
 
     return (
         <Router>
+            <GlobalLayout>
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             {isLoggedIn ?
                 <ApplicationViews />
                 :
                 <Authorize setIsLoggedIn={setIsLoggedIn} />
             }
+            </GlobalLayout>
         </Router>
     );
 }

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Col, Container, Button } from "reactstrap";
 import { getPostCommentsById } from "../../Managers/CommentManager";
 import { PostComment } from "./PostComment";
+import '../Post/Post.css';
 
 export const PostCommentList = () => {
     const [postComments, setPostComments] = useState([]);
@@ -23,7 +24,7 @@ export const PostCommentList = () => {
 
     return (
         <div className="comments text-center">
-            <h3>Comments</h3>
+            <h3 className="posts-title">Comments</h3>
             <Button onClick={() => navigate(-1)}>Back</Button>
             <Button color="primary" onClick={create}>
                 Add Comment

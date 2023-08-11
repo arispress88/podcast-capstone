@@ -3,10 +3,11 @@ import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import wwe from "../../img/wwe-logo.png"
 import wcw from "../../img/pngwing.com.png"
+import "./Category.css";
 
 export const Category = ({ category }) => {
     return (
-        <Card className="m-4" color="secondary" outline>
+        <Card className="m-4" color="dark" outline>
             <CardBody>
                 <p>
                     {category.id === 1 && 

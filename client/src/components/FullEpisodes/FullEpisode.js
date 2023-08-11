@@ -23,7 +23,7 @@ export const FullEpisode = ({ fullEpisode }) => {
                     <Link to={fullEpisode.episodeUrl}>{fullEpisode.title}</Link>
                 </CardTitle>
                 <CardText>
-                    Posted on: {new Date(fullEpisode.createDateTime).toLocaleDateString('en-US')}.
+                    Posted on: {new Date(fullEpisode.createDateTime).toLocaleDateString('en-US')}
                 </CardText>
             </CardBody>
             <CardFooter>

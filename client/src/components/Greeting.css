@@ -1,0 +1,15 @@
+.greeting {
+    background: linear-gradient(45deg, red, blue);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    color: antiquewhite;
+}
+
+.social-media-links {
+    color: antiquewhite;
+}
+
+.email {
+    color: antiquewhite;
+}

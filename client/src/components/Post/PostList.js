@@ -3,6 +3,7 @@ import { getAllPosts } from "../../Managers/PostManager";
 import { Col, Container, Row, Button } from "reactstrap";
 import { Post } from "./Post";
 import { useNavigate } from "react-router-dom";
+import "./Post.css";
 
 export const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -22,12 +23,12 @@ export const PostList = () => {
 
     return (
         <div className="posts text-center">
-            <h2>Posts</h2>
+            <h2 className="posts-title">Posts</h2>
             <Button color="primary" onClick={create}>
                 New Post
             </Button>
             <Container
-                className="bg-light border"
+                className="bg-light"
                 fluid="xl"
                 >
                  {posts.map((post) => (

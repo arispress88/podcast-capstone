@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../Managers/UserProfileManager";
+import './Login.css';
 
 export default function Login({setIsLoggedIn}) {
     const navigate = useNavigate();
@@ -24,7 +25,9 @@ export default function Login({setIsLoggedIn}) {
     };
 
     return (
-        <Form onSubmit={loginSubmit}>
+        <div className="login-container">
+            <div className="big-image"></div>
+        <Form className="login-form" onSubmit={loginSubmit}>
             <fieldset>
                 <FormGroup>
                     <Label for="email">Email</Label>
@@ -42,5 +45,6 @@ export default function Login({setIsLoggedIn}) {
                 </em>
             </fieldset>
         </Form>
+        </div>
     );
 }

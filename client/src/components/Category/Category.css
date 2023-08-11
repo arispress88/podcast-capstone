@@ -1,0 +1,15 @@
+.categories {
+    background: linear-gradient(45deg, red, blue);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+}
+
+.categories-title {
+    color: antiquewhite;
+    font-size: 36px;
+}
+
+.m-4 {
+    background-color: transparent !important;
+}
