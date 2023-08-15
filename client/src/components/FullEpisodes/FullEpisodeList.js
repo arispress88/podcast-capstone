@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAllEpisodes } from "../../Managers/FullEpisodeManager";
-import { Col, Container, Row, Button } from "reactstrap";
+import { getAllEpisodes, deleteEpisode } from "../../Managers/FullEpisodeManager";
+import { Col, Container, Row, Button, Alert } from "reactstrap";
 import { FullEpisode } from "./FullEpisode";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import '../Post/Post.css';
 
 export const FullEpisodeList = () => {
     const [fullEpisodes, setFullEpisodes] = useState([]);
@@ -20,12 +21,12 @@ export const FullEpisodeList = () => {
     const isAdmin = loggedInUser?.userType?.id === 1;
 
     const create = () => {
-        navigate("/") //TODO: ADD FULL EPISODE LINK
+        navigate("/fullepisodes/add")
     }
 
     return (
         <div className="episodes text-center">
-            <h2>Latest Episodes (Available on Spotify)</h2>
+            <h2 className="posts-title">Latest Episodes (Available on Spotify)</h2>
             {isAdmin && (
                 <Button
                     color="info"

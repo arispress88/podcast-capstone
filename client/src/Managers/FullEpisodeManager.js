@@ -15,7 +15,7 @@ export const addFullEpisode = (singleEpisode) => {
     });
 };
 
-export const deleteClip = (id) => {
+export const deleteEpisode = (id) => {
     return fetch(`${apiUrl}/api/fullepisodes/${id}`, {
         method: "DELETE",
     })
