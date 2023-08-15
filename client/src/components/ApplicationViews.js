@@ -22,6 +22,7 @@ import { ClipCommentForm } from "./Comment/ClipCommentForm";
 import { PostCommentEdit } from "./Comment/PostCommentEdit";
 import { ClipCommentEdit } from "./Comment/ClipCommentEdit";
 import { FullEpisodeList } from "./FullEpisodes/FullEpisodeList";
+import { AddFullEpisode } from "./FullEpisodes/AddFullEpisode";
 
 export default function ApplicationViews() {
     return (
@@ -47,6 +48,7 @@ export default function ApplicationViews() {
             <Route path="/clipcomment/add" element={<ClipCommentForm />} />
             <Route path="/clipcomment/edit/:commentId" element={<ClipCommentEdit />} />
             <Route path="/fullepisodes" element={<FullEpisodeList />} />
+            <Route path="/fullepisodes/add" element={<AddFullEpisode />} />
         </Routes>
     );
 }
