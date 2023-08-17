@@ -46,6 +46,9 @@ export const FullEpisodeList = () => {
                     ))}
                 </Row>
             </Container>
+            <div>
+                <h5 className="posts-title">For all full episodes click <Link to={"https://open.spotify.com/show/0vEOeYmVtFThauSn2NQVTW"}>here</Link></h5>
+            </div>
         </div>
     )
 }
