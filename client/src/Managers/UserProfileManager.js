@@ -68,3 +68,11 @@ export const register = (userObject, password) => {
       body: JSON.stringify(userTypeId)
     })
   }
+
+  //Delete a user
+  export const deleteUserProfile = (id) => {
+    return fetch(`${apiUrl}/api/userprofile/${id}`, {
+        method: "DELETE",
+    })
+    .then(() => getAllUserProfiles())
+  };
