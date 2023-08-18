@@ -8,5 +8,6 @@ namespace AEWRPod2.Repositories
         List<UserProfile> GetAll();
         UserProfile GetUserProfileById(int id);
         public void Update(UserProfile userProfile);
+        public void Delete(int id);
     }
 }

@@ -84,5 +84,12 @@ namespace AEWRPod2.Controllers
             _userRepository.UpdateUserType(id, userTypeId);
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _userProfileRepository.Delete(id);
+            return NoContent();
+        }
     }
 }
